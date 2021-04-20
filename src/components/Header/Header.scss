@@ -1,0 +1,14 @@
+.header {
+  min-height: 162px;
+  background-image: url(../../assets/bg-pattern-header.svg);
+  background-size: cover;
+
+  &__wrapper {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 2.813rem;
+    /* align-items: center; */
+    width: 90%;
+    margin: 0 auto;
+  }
+}

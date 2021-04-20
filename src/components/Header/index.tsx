@@ -1,11 +1,15 @@
 import React from "react";
+import "./Header.scss";
 
-const Header = () => {
+const Header2 = (): JSX.Element => {
   return (
-    <header>
-      <h1>fetch them all</h1>
+    <header className="header">
+      <div className="header__wrapper">
+        <h1>Fetch them all</h1>
+        <button>Language</button>
+      </div>
     </header>
   );
 };
 
-export default Header;
+export default Header2;
