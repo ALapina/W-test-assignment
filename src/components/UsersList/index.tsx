@@ -1,7 +1,10 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 // Router
 import { Link } from "react-router-dom";
+
+//components
+import PageHeader from "../PageHeader";
 
 // Icons
 import { AiFillPlusCircle } from "react-icons/ai";
@@ -10,59 +13,45 @@ import { RiArrowRightSLine } from "react-icons/ri";
 // Styles
 import "./UsersList.scss";
 
-const UsersList = (): JSX.Element => {
-  const [users, setUsers] = useState([]);
+type UserType = {
+  id: number;
+  email: string;
+  first_name: string;
+  last_name: string;
+  avatar: string;
+};
 
-  //Добавить try и catch - поработать над ts
-  const fetchUsers = async () => {
+const UsersList = () => {
+  const [users, setUsers] = useState<UserType[]>([]);
+
+  async function fetchUsers() {
     const response = await fetch("https://reqres.in/api/users?per_page=12");
     const json = await response.json();
     setUsers(json.data);
-  };
+  }
 
   useEffect(() => {
     fetchUsers();
   }, []);
-  console.log(users);
 
   return (
     <main>
       <div className="wrapper">
-        <div className="users-header">
-          <h2>Users</h2>
-          <Link to="/create-new-user">
-            <button className="create-new-user-button">
-              <AiFillPlusCircle className="plus-icon" />
-              Create New User
-            </button>
-          </Link>
-        </div>
+        <PageHeader title={"Users List"} showButton={true} />
 
         <div className="users-list">
-          <Link to="/user">
-            <a href="/user" className="users-list__user">
-              <span className="users-list__name">paul rudd1</span>
+          {users.map((user) => (
+            <Link
+              to={`/user/${user.id}`}
+              className="users-list__user"
+              key={user.id}
+            >
+              <span className="users-list__name">
+                {user.first_name} {user.last_name}
+              </span>
               <RiArrowRightSLine />
-            </a>
-          </Link>
-          <Link to="/user">
-            <a href="/user" className="users-list__user">
-              <span className="users-list__name">paul rudd1</span>
-              <RiArrowRightSLine />
-            </a>
-          </Link>
-          <Link to="/user">
-            <a href="/user" className="users-list__user">
-              <span className="users-list__name">paul rudd1</span>
-              <RiArrowRightSLine />
-            </a>
-          </Link>
-          <Link to="/user">
-            <a href="/user" className="users-list__user">
-              <span className="users-list__name">paul rudd1</span>
-              <RiArrowRightSLine />
-            </a>
-          </Link>
+            </Link>
+          ))}
         </div>
       </div>
     </main>

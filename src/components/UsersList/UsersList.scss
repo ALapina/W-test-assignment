@@ -1,48 +1,10 @@
 @import "../../styles/variables.scss";
 
-.wrapper {
-  margin: 0 auto;
-  width: 70%;
-}
-
-.users-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: 2.5rem;
-  font-size: 1.25rem;
-}
-
-.create-new-user-button {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-weight: 700;
-  font-size: 1.25rem;
-  background-color: $violet;
-  color: #ffffff;
-  border-radius: 50px;
-  transition: all 300ms ease-in-out;
-  padding-right: 15px;
-}
-
-.create-new-user-button:hover {
-  background-color: $light-violet;
-  color: $primary-dark;
-}
-
-.plus-icon {
-  width: 50px;
-  height: 50px;
-  margin-left: -4px;
-  margin-right: 8px;
-}
-
 .users-list {
   &__user {
     display: block;
     background-color: $very-dark-blue;
-    margin-top: 20px;
+    margin: 1.25rem 0;
     padding: 20px 20px;
     display: flex;
     justify-content: space-between;

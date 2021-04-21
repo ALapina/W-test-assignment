@@ -1,9 +1,15 @@
 import React from "react";
 
+//components
+import PageHeader from "../PageHeader";
+
+//styles
+import "./CreateNewUser.scss";
+
 const CreateNewUser = () => {
   return (
-    <div>
-      <h1>Create New User</h1>
+    <div className="wrapper">
+      <PageHeader title={"Create New User"} showButton={false} />
     </div>
   );
 };

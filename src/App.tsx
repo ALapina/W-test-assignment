@@ -14,7 +14,7 @@ function App() {
     <Router>
       <Header />
       <Switch>
-        <Route path="/user">
+        <Route path="/user/:id">
           <UserDetails />
         </Route>
         <Route path="/create-new-user">

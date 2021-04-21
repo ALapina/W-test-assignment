@@ -4,7 +4,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Live
 
-http://alapina.github.io/W-test-assignment/
+https://alapina.github.io/fetch-them-all/
 
 ## Available Scripts
 

@@ -1,0 +1,26 @@
+@import "../../styles/variables.scss";
+
+.create-new-user-button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 700;
+  font-size: 1.25rem;
+  background-color: $violet;
+  color: #ffffff;
+  border-radius: 50px;
+  transition: all 300ms ease-in-out;
+  padding-right: 15px;
+  
+  &:hover {
+  background-color: $light-violet;
+  color: $primary-dark;
+}
+}
+
+.plus-icon {
+  width: 50px;
+  height: 50px;
+  margin-left: -4px;
+  margin-right: 8px;
+}

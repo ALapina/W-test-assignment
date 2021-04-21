@@ -1,7 +1,17 @@
+@import "../../styles/variables.scss";
+
+a {
+  transition: all 200ms ease-in-out;
+}
+a:active {
+  color: $primary-dark;
+}
+
 .header {
   min-height: 162px;
   background-image: url(../../assets/bg-pattern-header.svg);
   background-size: cover;
+  margin-bottom: 2.5rem;
 
   &__wrapper {
     display: flex;
