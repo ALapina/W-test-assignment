@@ -7,7 +7,6 @@ import { Link } from "react-router-dom";
 import PageHeader from "../PageHeader";
 
 // Icons
-import { AiFillPlusCircle } from "react-icons/ai";
 import { RiArrowRightSLine } from "react-icons/ri";
 
 // Styles
