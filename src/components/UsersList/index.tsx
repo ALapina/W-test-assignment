@@ -22,16 +22,29 @@ type UserType = {
 
 const UsersList = () => {
   const [users, setUsers] = useState<UserType[]>([]);
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [totalPages, setTotalPages] = useState<number>(1);
 
-  async function fetchUsers() {
-    const response = await fetch("https://reqres.in/api/users?per_page=12");
+  // TODO: Вынести в utilitis! Использовать axios можно. Возвращать просто json
+  async function fetchUsers(currentPage: number) {
+    const response = await fetch(
+      `https://reqres.in/api/users?page=${currentPage}`
+    );
     const json = await response.json();
     setUsers(json.data);
+    setCurrentPage(json.page);
+    setTotalPages(json.total_pages);
   }
 
   useEffect(() => {
-    fetchUsers();
-  }, []);
+    fetchUsers(currentPage);
+  }, [currentPage]);
+
+  const arrayTotalPages: Array<number> = [];
+
+  for (let i = 1; i <= totalPages; i++) {
+    arrayTotalPages.push(i);
+  }
 
   return (
     <main>
@@ -39,6 +52,7 @@ const UsersList = () => {
         <PageHeader title={"Users List"} showButton={true} />
 
         <div className="users-list">
+          {/* {isLoading && <h2>Loading...</h2>} */}
           {users.map((user) => (
             <Link
               to={`/user/${user.id}`}
@@ -52,6 +66,18 @@ const UsersList = () => {
             </Link>
           ))}
         </div>
+      </div>
+      {/* TODO: Пагинацию в отдельный компонент */}
+      <div>
+        <ul className="pagination">
+          {arrayTotalPages.map((pageNumber: number) => (
+            <li key={pageNumber}>
+              <button onClick={() => setCurrentPage(pageNumber)}>
+                {pageNumber}
+              </button>
+            </li>
+          ))}
+        </ul>
       </div>
     </main>
   );
