@@ -30,8 +30,6 @@ interface FormValues {
   date: Date | string;
 }
 
-type F = keyof FormValues;
-
 enum Positions {
   SoftwareEngineer = "Software Engineer",
   Painter = "Painter",
