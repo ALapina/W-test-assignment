@@ -1,18 +1,21 @@
-import React from "react";
+// router
 import { Link } from "react-router-dom";
+// styles
 import "./Header.scss";
+// components
+import SwitchLanguagesButtons from "../SwitchLanguagesButtons";
 
-const Header2 = (): JSX.Element => {
+const Header = () => {
   return (
     <header className="header">
       <div className="header__wrapper">
         <Link to="/">
           <h1>Fetch them all</h1>
         </Link>
-        <button>Language</button>
+        <SwitchLanguagesButtons />
       </div>
     </header>
   );
 };
 
-export default Header2;
+export default Header;

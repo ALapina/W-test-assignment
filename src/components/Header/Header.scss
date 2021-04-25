@@ -1,12 +1,5 @@
 @import "../../styles/variables.scss";
 
-a {
-  transition: all 200ms ease-in-out;
-}
-a:active {
-  color: $primary-dark;
-}
-
 .header {
   min-height: 162px;
   background-image: url(../../assets/bg-pattern-header.svg);
@@ -17,8 +10,21 @@ a:active {
     display: flex;
     justify-content: space-between;
     padding-top: 2.813rem;
-    /* align-items: center; */
+    align-items: flex-start;
     width: 90%;
     margin: 0 auto;
+  }
+
+  a {
+    transition: all 200ms ease-in-out;
+  }
+  a:active {
+    color: $primary-dark;
+  }
+}
+
+@include mobile-L-425 {
+  .header__wrapper {
+    flex-direction: column;
   }
 }

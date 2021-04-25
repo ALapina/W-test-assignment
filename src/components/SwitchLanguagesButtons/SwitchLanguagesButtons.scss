@@ -1,0 +1,24 @@
+@import "../../styles/variables.scss";
+
+.switch-languages {
+  display: flex;
+
+  &__language-button {
+    width: 30px;
+    height: 30px;
+    margin-right: 1.25rem;
+  }
+  .en {
+    background: url("https://image.flaticon.com/icons/svg/197/197374.svg");
+  }
+  .es {
+    background: url("https://image.flaticon.com/icons/svg/197/197593.svg");
+  }
+}
+
+@include mobile-L-425 {
+  .switch-languages {
+    align-self: flex-end;
+    padding-top: 0.625rem;
+  }
+}

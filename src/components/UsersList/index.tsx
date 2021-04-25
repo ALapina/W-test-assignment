@@ -12,6 +12,9 @@ import { RiArrowRightSLine } from "react-icons/ri";
 // Styles
 import "./UsersList.scss";
 
+//multilanguage
+import { useTranslation } from "react-i18next";
+
 type UserType = {
   id: number;
   email: string;
@@ -24,6 +27,7 @@ const UsersList = () => {
   const [users, setUsers] = useState<UserType[]>([]);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [totalPages, setTotalPages] = useState<number>(1);
+  const { t } = useTranslation();
 
   // TODO: Вынести в utilitis! Использовать axios можно. Возвращать просто json
   async function fetchUsers(currentPage: number) {
@@ -49,10 +53,8 @@ const UsersList = () => {
   return (
     <main>
       <div className="wrapper">
-        <PageHeader title={"Users List"} showButton={true} />
-
+        <PageHeader title={t("description.part2")} showButton={true} />
         <div className="users-list">
-          {/* {isLoading && <h2>Loading...</h2>} */}
           {users.map((user) => (
             <Link
               to={`/user/${user.id}`}
@@ -63,6 +65,7 @@ const UsersList = () => {
                 {user.first_name} {user.last_name}
               </span>
               <RiArrowRightSLine />
+              {t("description.part1")}
             </Link>
           ))}
         </div>
