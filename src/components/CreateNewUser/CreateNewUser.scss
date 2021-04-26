@@ -1,7 +1,60 @@
-// input {
-//   display: block;
-//   margin: 20px;
-// }
+@import "../../styles/variables.scss";
+
+.form-wrapper {
+  background-color: $very-dark-blue;
+  border-radius: 0.375rem;
+  max-width: 540px;
+  width: 100%;
+  margin: 0 auto;
+  // display: grid;
+  // place-items: center;
+}
+
+.create-new-user-form {
+  // display: grid;
+  // place-items: center;
+
+  padding: 20px;
+  // width: 100%;
+  // margin: 0 auto;
+  // display: flex;
+  // flex-direction: column;
+  // align-items: center;
+
+  // &__label {
+  //   margin: 10px 0;
+  // }
+  // &__input {
+  //   // width: 100%;
+  //   display: block;
+  //   max-width: 460px;
+  //   width: 100%;
+  //   border: 3px solid $violet;
+  //   border-radius: 0.313rem;
+  //   padding: 0.313rem 0.625rem;
+  //   // cursor: pointer;
+  //   // border-style: none;
+  //   margin-top: 6px;
+  //   margin-bottom: 6px;
+  // }
+}
+
+.label {
+  padding-top: 15px;
+}
+
+.input {
+  display: block;
+  // max-width: 460px;
+  width: 100%;
+  border: 3px solid $violet;
+  border-radius: 0.313rem;
+  padding: 0.313rem 0.625rem;
+  // cursor: pointer;
+  // border-style: none;
+  margin-top: 6px;
+  margin-bottom: 6px;
+}
 
 .date-picker {
   input {
@@ -10,10 +63,18 @@
   }
 }
 
-.red {
-  background-color: red;
+.validation-error {
+  border: 3px solid $error-red;
 }
 
-.green {
-  background-color: green;
+// .green {
+//   background-color: green;
+// }
+
+.validation-error-message {
+  min-height: 20px;
+  display: flex;
+  justify-content: flex-end;
+  color: $error-red;
+  font-size: 14px;
 }

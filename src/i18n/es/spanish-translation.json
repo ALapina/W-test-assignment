@@ -5,9 +5,27 @@
     "part3": "Crear nueva usuaria"
   },
   "create-new-user-button": "Crear Nueva Usuaria",
-  "form-validation": {
-    "name": "name",
-    "required": "Este campo es obligatorio",
-    "over18years": "Lo siento, debes ser mayor de 18 años."
+  "form": {
+    "first-name": "Primer nombre",
+    "last-name": "Apellido",
+    "occupation": "Ocupación",
+    "date-of-birth": "Fecha de nacimiento",
+    "response-result": "Resultado de la respuesta",
+
+    "form-validation": {
+      "name": "Solo se permiten caracteres latinos",
+      "required": "Este campo es obligatorio",
+      "over18years": "Lo siento, debes ser mayor de 18 años."
+    },
+    "placeholder": {
+      "first-name": "ponga su primer nombre",
+      "last-name": "ingrese su apellido",
+      "occupation": "Seleccionar ocupación"
+    }
+  },
+  "Positions": {
+    "SoftwareEngineer": "Ingeniera de software",
+    "Painter": "Pintora",
+    "BusDriver": "Conductora de autobus"
   }
 }

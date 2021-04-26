@@ -5,9 +5,28 @@
     "part3": "Create New User"
   },
   "create-new-user-button": "Create New User",
-  "form-validation": {
-    "name": "name",
-    "required": "This field is required",
-    "over18years": "Sorry, you must be over 18 years old"
+  "form": {
+    "first-name": "First Name",
+    "last-name": "Last Name",
+    "occupation": "Occupation",
+    "date-of-birth": "Date of Birth",
+    "response-result": "Response result:",
+
+    "form-validation": {
+      "name": "Only latin characters allowed",
+      "required": "This field is required",
+      "over18years": "Sorry, you must be over 18 years old"
+    },
+
+    "placeholder": {
+      "first-name": "Enter your first name",
+      "last-name": "Enter your last name",
+      "occupation": "Select occupation"
+    }
+  },
+  "Positions": {
+    "SoftwareEngineer": "Software Engineer",
+    "Painter": "Painter",
+    "BusDriver": "Bus driver"
   }
 }
