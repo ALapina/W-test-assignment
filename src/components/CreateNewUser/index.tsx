@@ -19,7 +19,6 @@ import { Formik, FormikHelpers, FormikProps, Form, Field } from "formik";
 import * as Yup from "yup";
 //styles
 import "./CreateNewUser.scss";
-import "react-datepicker/dist/react-datepicker.css";
 
 interface FormValues {
   firstName: string;
