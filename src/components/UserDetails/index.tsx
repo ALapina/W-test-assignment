@@ -1,10 +1,8 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-
-//components
 import PageHeader from "../PageHeader";
-
-//styles
+import { useTranslation } from "react-i18next";
+import { fetchUsers } from "../../utils";
 import "./UserDetails.scss";
 
 type RouteParams = {
@@ -19,30 +17,37 @@ type UserType = {
   avatar: string;
 };
 
+type FetchedUserDataType = {
+  data: UserType;
+};
+
 const UserDetails = () => {
   const [user, setUser] = useState({} as UserType);
   let { id } = useParams<RouteParams>();
-
-  async function fetchUsers(id: string) {
-    const response = await fetch(`https://reqres.in/api/users/${id}`);
-    const json = await response.json();
-    setUser(json.data);
-  }
+  const { t } = useTranslation();
 
   useEffect(() => {
-    fetchUsers(id);
+    fetchUsers(`https://reqres.in/api/users/${id}`)
+      .then((json: FetchedUserDataType) => {
+        setUser(json.data);
+      })
+      .catch((error) => console.error(error));
   }, [id]);
-
-  console.log(user);
 
   return (
     <div className="wrapper">
-      <PageHeader title={"User Details"} showButton={true} />
+      <PageHeader title={t("page-headers.part2")} showButton={true} />
       <div className="user-details">
-        <img src={user.avatar} alt={user?.first_name} />
-        <p>{user.first_name}</p>
-        <p>{user.last_name}</p>
-        <p>{user.email}</p>
+        <img
+          className="user-details__avatar"
+          src={user.avatar}
+          alt={user.first_name}
+        />
+        <div className="dividing-line"></div>
+        <p>
+          {user.first_name} {user.last_name}
+        </p>
+        <p className="user-details__email">{user.email}</p>
       </div>
     </div>
   );

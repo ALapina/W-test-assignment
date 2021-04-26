@@ -21,6 +21,12 @@ type UserType = {
   avatar: string;
 };
 
+type FetchedUserListDataType = {
+  data: [];
+  page: number;
+  total_pages: number;
+};
+
 const UsersList = () => {
   const [users, setUsers] = useState<UserType[]>([]);
   const [currentPage, setCurrentPage] = useState<number>(1);
@@ -29,7 +35,7 @@ const UsersList = () => {
 
   useEffect(() => {
     fetchUsers(`https://reqres.in/api/users?page=${currentPage}`)
-      .then((json) => {
+      .then((json: FetchedUserListDataType) => {
         setUsers(json.data);
         setCurrentPage(json.page);
         setTotalPages(json.total_pages);
