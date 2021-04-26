@@ -4,5 +4,10 @@
     "part2": "Detalles de usuario",
     "part3": "Crear nueva usuaria"
   },
-  "create-new-user-button": "Crear Nueva Usuaria"
+  "create-new-user-button": "Crear Nueva Usuaria",
+  "form-validation": {
+    "name": "name",
+    "required": "Este campo es obligatorio",
+    "over18years": "Lo siento, debes ser mayor de 18 años."
+  }
 }

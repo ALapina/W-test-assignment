@@ -4,5 +4,10 @@
     "part2": "User Details",
     "part3": "Create New User"
   },
-  "create-new-user-button": "Create New User"
+  "create-new-user-button": "Create New User",
+  "form-validation": {
+    "name": "name",
+    "required": "This field is required",
+    "over18years": "Sorry, you must be over 18 years old"
+  }
 }

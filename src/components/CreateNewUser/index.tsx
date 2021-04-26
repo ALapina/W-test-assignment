@@ -1,33 +1,31 @@
+// Formik + Typescript
 // https://formik.org/docs/guides/typescript
-
 // https://formik.org/docs/examples/typescript
 
+// Formik validation with Yup
 // https://formik.org/docs/guides/validation
 // https://github.com/jquense/yup#api
 
 // https://www.npmjs.com/package/react-date-picker
 
 import { useState } from "react";
-
+import PageHeader from "../PageHeader";
+import { postNewUser } from "../../utils";
+import { useTranslation } from "react-i18next";
+// import DatePicker from "react-datepicker";
+import DatePicker from "react-date-picker";
 import { Formik, FormikHelpers, FormikProps, Form, Field } from "formik";
-
 //Yup for form validation
 import * as Yup from "yup";
-
-//components
-import PageHeader from "../PageHeader";
-
 //styles
 import "./CreateNewUser.scss";
-
-const minDate = new Date();
-minDate.setFullYear(minDate.getFullYear() - 18);
+import "react-datepicker/dist/react-datepicker.css";
 
 interface FormValues {
   firstName: string;
   lastName: string;
   position: string;
-  date: Date | string;
+  dateOfBirth: Date | null;
 }
 
 enum Positions {
@@ -36,42 +34,40 @@ enum Positions {
   BusDriver = "Bus driver",
 }
 
-//https://stackoverflow.com/questions/51222559/formik-yup-form-validation-not-working-as-expected-with-virtualizedselect
-// https://github.com/jquense/yup#mixednullableisnullable-boolean--true-schema
-const CreateNewUserSchema = Yup.object().shape({
-  firstName: Yup.string()
-    .matches(/^[a-z\s]+$/i, "Only latin craracters pls")
-    .required("Required"),
-  lastName: Yup.string()
-    .matches(/^[a-z\s]+$/i, "Only latin craracters pls")
-    .required("Required"),
-  date: Yup.date()
-    .max(minDate, "Sorry you must be 18 years old")
-    .required("Required"),
-});
+const initialValues: FormValues = {
+  firstName: "",
+  lastName: "",
+  position: "",
+  dateOfBirth: null,
+};
 
-//https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch#supplying_request_options
-async function postNewUser(url: string, data: FormValues): Promise<Object> {
-  const response = await fetch(url, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(data),
-  });
-  return response.json();
-}
+const minDate = new Date();
+minDate.setFullYear(minDate.getFullYear() - 18);
 
 const CreateNewUser = () => {
   const [savedData, setSavedData] = useState(null as Object | null);
+  const { t } = useTranslation();
 
-  const initialValues: FormValues = {
-    firstName: "",
-    lastName: "",
-    position: "",
-    date: "",
-  };
+  // TODO: Валидацию в use effect? что бы перевод происходил
+  // Form Validation Schema
+  //https://stackoverflow.com/questions/51222559/formik-yup-form-validation-not-working-as-expected-with-virtualizedselect
+  //https://github.com/jquense/yup#mixednullableisnullable-boolean--true-schema
+  const CreateNewUserSchema = Yup.object().shape({
+    firstName: Yup.string()
+      .matches(/^[a-z\s]+$/i, "Only latin craracters pls")
+      .required(t("form-validation.required")),
+    lastName: Yup.string()
+      .matches(/^[a-z\s]+$/i, "Only latin craracters pls")
+      .required(t("form-validation.required")),
+    dateOfBirth: Yup.date()
+      .max(minDate, t("form-validation.over18years"))
+      .required(t("form-validation.required"))
+      .nullable(),
+  });
+
   return (
     <div className="wrapper">
-      <PageHeader title={"Create New User"} showButton={false} />
+      <PageHeader title={t("page-headers.part3")} showButton={false} />
       <Formik
         initialValues={initialValues}
         validationSchema={CreateNewUserSchema}
@@ -93,6 +89,8 @@ const CreateNewUser = () => {
           errors,
           touched,
           handleChange,
+          setFieldValue,
+          setFieldTouched,
         }: FormikProps<FormValues>) => (
           <Form>
             <label>
@@ -144,13 +142,25 @@ const CreateNewUser = () => {
 
             <label>
               Date of Birth:
-              <Field
-                required
-                type="date"
-                name="date"
-                className={`date-picker ${errors.date ? "red" : "green"}`}
+              <DatePicker
+                dayPlaceholder="dd"
+                monthPlaceholder="mm"
+                yearPlaceholder="yyyy"
+                className={`date-picker ${
+                  errors.dateOfBirth && touched.dateOfBirth ? "red" : "green"
+                }`}
+                name="dateOfBirth"
+                value={values.dateOfBirth}
+                // https://stackoverflow.com/questions/56312372/react-datepicker-with-a-formik-form
+                onChange={async (inputValue) => {
+                  console.log(inputValue);
+                  await setFieldValue("dateOfBirth", inputValue, false);
+                  setFieldTouched("dateOfBirth", true);
+                }}
               />
-              {errors.date && touched.date ? <div>{errors.date}</div> : null}
+              {touched.dateOfBirth && errors.dateOfBirth && (
+                <div>{errors.dateOfBirth}</div>
+              )}
             </label>
 
             <br />
