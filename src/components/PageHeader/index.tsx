@@ -1,7 +1,6 @@
-import React from "react";
-
+//components
 import CreateNewUserButton from "../CreateNewUserButton";
-
+// styles
 import "./PageHeader.scss";
 
 type PageHeaderProps = {

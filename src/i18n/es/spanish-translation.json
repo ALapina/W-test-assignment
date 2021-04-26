@@ -1,6 +1,8 @@
 {
-  "description": {
-    "part1": "Spanish 1",
-    "part2": "Spanish 2"
-  }
+  "page-headers": {
+    "part1": "Lista de usuarios",
+    "part2": "Detalles de usuario",
+    "part3": "Crear nueva usuaria"
+  },
+  "create-new-user-button": "Crear Nueva Usuaria"
 }

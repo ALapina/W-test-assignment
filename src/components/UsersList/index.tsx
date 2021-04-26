@@ -1,19 +1,17 @@
 import { useState, useEffect } from "react";
-
 // Router
 import { Link } from "react-router-dom";
-
-//components
-import PageHeader from "../PageHeader";
-
 // Icons
 import { RiArrowRightSLine } from "react-icons/ri";
-
 // Styles
 import "./UsersList.scss";
-
-//multilanguage
+// multi language react-i18next
 import { useTranslation } from "react-i18next";
+//components
+import PageHeader from "../PageHeader";
+import Pagination from "../Pagination";
+
+import { fetchUsers } from "../../utils";
 
 type UserType = {
   id: number;
@@ -29,31 +27,20 @@ const UsersList = () => {
   const [totalPages, setTotalPages] = useState<number>(1);
   const { t } = useTranslation();
 
-  // TODO: Вынести в utilitis! Использовать axios можно. Возвращать просто json
-  async function fetchUsers(currentPage: number) {
-    const response = await fetch(
-      `https://reqres.in/api/users?page=${currentPage}`
-    );
-    const json = await response.json();
-    setUsers(json.data);
-    setCurrentPage(json.page);
-    setTotalPages(json.total_pages);
-  }
-
   useEffect(() => {
-    fetchUsers(currentPage);
+    fetchUsers(`https://reqres.in/api/users?page=${currentPage}`)
+      .then((json) => {
+        setUsers(json.data);
+        setCurrentPage(json.page);
+        setTotalPages(json.total_pages);
+      })
+      .catch((error) => console.error(error));
   }, [currentPage]);
-
-  const arrayTotalPages: Array<number> = [];
-
-  for (let i = 1; i <= totalPages; i++) {
-    arrayTotalPages.push(i);
-  }
 
   return (
     <main>
       <div className="wrapper">
-        <PageHeader title={t("description.part2")} showButton={true} />
+        <PageHeader title={t("page-headers.part1")} showButton={true} />
         <div className="users-list">
           {users.map((user) => (
             <Link
@@ -65,22 +52,14 @@ const UsersList = () => {
                 {user.first_name} {user.last_name}
               </span>
               <RiArrowRightSLine />
-              {t("description.part1")}
             </Link>
           ))}
         </div>
-      </div>
-      {/* TODO: Пагинацию в отдельный компонент */}
-      <div>
-        <ul className="pagination">
-          {arrayTotalPages.map((pageNumber: number) => (
-            <li key={pageNumber}>
-              <button onClick={() => setCurrentPage(pageNumber)}>
-                {pageNumber}
-              </button>
-            </li>
-          ))}
-        </ul>
+        <Pagination
+          totalPages={totalPages}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+        />
       </div>
     </main>
   );

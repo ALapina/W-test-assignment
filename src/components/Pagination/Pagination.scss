@@ -1,0 +1,28 @@
+@import "../../styles/variables.scss";
+
+.pagination {
+  display: flex;
+  justify-content: flex-end;
+
+  &__list {
+    display: flex;
+
+    li {
+      margin: 0px 0.625rem;
+    }
+  }
+
+  &__page-number {
+    color: $violet;
+    border: 3px solid $violet;
+    background-color: transparent;
+    font-weight: 700;
+    border-radius: 0.313rem;
+    padding: 0.313rem 0.625rem;
+  }
+
+  .active-page {
+    color: $light-violet;
+    border: 3px solid $light-violet;
+  }
+}

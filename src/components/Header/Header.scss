@@ -16,7 +16,7 @@
   }
 
   a {
-    transition: all 200ms ease-in-out;
+    @include transition-ease-in-out;
   }
   a:active {
     color: $primary-dark;

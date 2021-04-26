@@ -1,6 +1,8 @@
 {
-  "description": {
-    "part1": "English 1",
-    "part2": "MARTINI"
-  }
+  "page-headers": {
+    "part1": "User List",
+    "part2": "User Details",
+    "part3": "Create New User"
+  },
+  "create-new-user-button": "Create New User"
 }

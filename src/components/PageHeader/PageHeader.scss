@@ -1,7 +1,15 @@
+@import "../../styles/variables.scss";
+
 .users-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 1.25rem;
   font-size: 1.25rem;
+}
+
+@include mobile-L-425 {
+  .users-header {
+    flex-direction: column;
+  }
 }

@@ -1,6 +1,7 @@
 //styles
 import "./SwitchLanguagesButtons.scss";
 
+// multi language react-i18next
 import { useTranslation } from "react-i18next";
 
 const languages: { [key: string]: { [key: string]: string } } = {

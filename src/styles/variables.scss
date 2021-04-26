@@ -3,8 +3,18 @@ $very-dark-blue: #19202d;
 $violet: #5964e0;
 $light-violet: #939bf4;
 
+@mixin transition-ease-in-out {
+  transition: all 300ms ease-in-out;
+}
+
 @mixin mobile-L-425 {
   @media screen and (max-width: 425px) {
+    @content;
+  }
+}
+
+@mixin Tablet-768 {
+  @media screen and (max-width: 768px) {
     @content;
   }
 }
