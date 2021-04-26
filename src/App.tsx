@@ -9,7 +9,7 @@ import CreateNewUser from "./components/CreateNewUser";
 
 function App() {
   return (
-    <Router>
+    <Router basename="/fetch-them-all">
       <Header />
       <Switch>
         <Route path="/user/:id">
