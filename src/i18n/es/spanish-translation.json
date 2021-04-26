@@ -18,8 +18,8 @@
       "over18years": "Lo siento, debes ser mayor de 18 años."
     },
     "placeholder": {
-      "first-name": "ponga su primer nombre",
-      "last-name": "ingrese su apellido",
+      "first-name": "Ingrese el nombre",
+      "last-name": "Introduzca el apellido",
       "occupation": "Seleccionar ocupación"
     }
   },
