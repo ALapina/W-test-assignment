@@ -2,7 +2,7 @@
   "page-headers": {
     "part1": "User List",
     "part2": "User Details",
-    "part3": "Create New User"
+    "part3": "Create New User Page"
   },
   "create-new-user-button": "Create New User",
   "form": {

@@ -27,21 +27,23 @@ type FetchedUserListDataType = {
   total_pages: number;
 };
 
-const UsersList = () => {
+const USERS_URL = "https://reqres.in/api/users?page=";
+
+const UsersList = ({ url = USERS_URL }) => {
   const [users, setUsers] = useState<UserType[]>([]);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [totalPages, setTotalPages] = useState<number>(1);
   const { t } = useTranslation();
 
   useEffect(() => {
-    fetchUsers(`https://reqres.in/api/users?page=${currentPage}`)
+    fetchUsers(`${url}${currentPage}`)
       .then((json: FetchedUserListDataType) => {
         setUsers(json.data);
         setCurrentPage(json.page);
         setTotalPages(json.total_pages);
       })
       .catch((error) => console.error(error));
-  }, [currentPage]);
+  }, [url, currentPage]);
 
   return (
     <main>
